@@ -61,24 +61,58 @@ const orderForm = document.getElementById("orderForm");
 const successPopup = document.getElementById("successPopup");
 const closePopup = document.getElementById("closePopup");
 
-orderForm.addEventListener("submit", function (e) {
+orderForm.addEventListener("submit", async function (e) {
 
     e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
+    const wilaya = document.getElementById("wilaya").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const color = document.getElementById("color").value;
 
     if (name === "" || phone === "") {
 
         alert("Veuillez remplir les champs obligatoires.");
-
         return;
 
     }
 
-    successPopup.style.display = "flex";
+    try{
 
-    orderForm.reset();
+        await fetch("https://script.google.com/macros/s/AKfycbyrvxXSD_NxZKnFwxUxnVaAv70VvIoZHd5kpzCCv3K1VzOFwSscgFdOvml4EP_yLeY/exec",{
+
+            method:"POST",
+
+            body:JSON.stringify({
+
+                name:name,
+
+                phone:phone,
+
+                wilaya:wilaya,
+
+                address:address,
+
+                color:color
+
+            })
+
+        });
+
+        successPopup.style.display="flex";
+
+        orderForm.reset();
+
+    }
+
+    catch(error){
+
+        alert("Erreur lors de l'envoi de la commande.");
+
+        console.log(error);
+
+    }
 
 });
 
