@@ -94,9 +94,6 @@ orderForm.addEventListener("submit", async function (e) {
     })
 });
 
-if (!response.ok) {
-    throw new Error("Erreur serveur");
-}
 
 successPopup.style.display = "flex";
         orderForm.reset();
