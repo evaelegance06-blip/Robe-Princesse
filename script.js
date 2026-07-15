@@ -99,7 +99,6 @@ if (!response.ok) {
 }
 
 successPopup.style.display = "flex";
-
         orderForm.reset();
 
     }
