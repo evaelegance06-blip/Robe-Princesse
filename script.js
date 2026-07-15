@@ -98,7 +98,6 @@ if (!response.ok) {
     throw new Error("Erreur serveur");
 }
 
-        alert("Le code est arrivé ici");
 successPopup.style.display = "flex";
 
         orderForm.reset();
