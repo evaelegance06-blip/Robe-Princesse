@@ -80,25 +80,23 @@ orderForm.addEventListener("submit", async function (e) {
 
     try{
 
-        await fetch("https://script.google.com/macros/s/AKfycbyrvxXSD_NxZKnFwxUxnVaAv70VvIoZHd5kpzCCv3K1VzOFwSscgFdOvml4EP_yLeY/exec",{
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyrvxXSD_NxZKnFwxUxnVaAv70VvIoZHd5kpzCCv3K1VzOFwSscgFdOvml4EP_yLeY/exec", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name,
+        phone,
+        wilaya,
+        address,
+        color
+    })
+});
 
-            method:"POST",
-
-            body:JSON.stringify({
-
-                name:name,
-
-                phone:phone,
-
-                wilaya:wilaya,
-
-                address:address,
-
-                color:color
-
-            })
-
-        });
+if (!response.ok) {
+    throw new Error("Erreur serveur");
+}
 
         successPopup.style.display="flex";
 
